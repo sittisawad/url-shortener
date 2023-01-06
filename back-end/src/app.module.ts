@@ -1,11 +1,13 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { mongoConnectionString } from 'src/configs/config';
 import { UrlModule } from './url/url.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(mongoConnectionString, { dbName: 'shortener' }),
+    MongooseModule.forRoot(
+      'mongodb+srv://root:root@cluster0.slpkp20.mongodb.net',
+      { dbName: 'shortener' },
+    ),
     UrlModule,
   ],
 })
