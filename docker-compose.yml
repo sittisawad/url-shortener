@@ -3,34 +3,21 @@ networks:
     name: shortener
 
 services:
-  database:
-    image: mongo
-    restart: always
-    container_name: database
-    networks:
-     - shortener
-    ports:
-      - 27017:27017
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
-
   back-end:
     container_name: back-end
-    depends_on: ["database"]
     restart: always
     build: back-end
     ports:
       - 3000:3000
     networks:
-     - shortener
+      - shortener
 
   front-end:
     container_name: front-end
-    depends_on: ["database","back-end"]
-    restart:  always
+    depends_on: [ "back-end" ]
+    restart: always
     build: front-end
     ports:
       - 80:80
     networks:
-     - shortener
+      - shortener
