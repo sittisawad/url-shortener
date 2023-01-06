@@ -1,0 +1,78 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col d-flex justify-content-center">
+      <img
+        src="../../assets/images/logo.png"
+        class="img-fluid mt-4"
+        alt="Logo"
+      />
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-xs-12 col-md-4">
+      <div class="card">
+        <div class="card-body row flex-col">
+          <div class="d-flex justify-content-center">
+            <h4>Paste the URL to be shortened</h4>
+          </div>
+          <form class="need-validations" novalidate [formGroup]="form">
+            <div class="input-group has-validation">
+              <input
+                formControlName="url"
+                type="text"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': form.touched && form.invalid }"
+                placeholder="Enter the link here"
+              />
+              <button
+                [disabled]="form.invalid"
+                class="btn btn-primary"
+                type="button"
+                (click)="onShorten()"
+              >
+                Shorten
+              </button>
+              <div class="invalid-feedback">
+                <ng-container *ngIf="url.errors?.['required']"
+                  >Please enter link</ng-container
+                >
+                <ng-container *ngIf="url.errors?.['url']"
+                  >Please enter valid</ng-container
+                >
+              </div>
+            </div>
+            <ul *ngIf="model" class="list-group mt-2">
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center"
+              >
+                <div class="text-success">
+                  Shortened:
+                  <a target="_blank" href="{{ currentUrl + model.slug }}">{{
+                    currentUrl + model.slug
+                  }}</a>
+                </div>
+                <button (click)="onCopyUrl()" class="btn btn-sm btn-success">
+                  <i class="bi bi-clipboard"></i> Copy
+                </button>
+              </li>
+            </ul>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="d-flex justify-content-center position-relative">
+  <div class="toast" id="copyToast" role="alert">
+    <div class="toast-header">
+      <strong class="me-auto"></strong>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="toast"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="toast-body">Copied!!</div>
+  </div>
+</div>
