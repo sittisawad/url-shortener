@@ -24,7 +24,7 @@ import { RedirectComponent } from './redirect/redirect.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    NgxSpinnerModule,
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
     AppRoutingModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

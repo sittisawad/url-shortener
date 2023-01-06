@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Toast } from 'bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { UrlModel } from './url.model';
 import { UrlService } from './url.service';
 import { urlValidator } from './url.validator';
@@ -25,16 +26,21 @@ export class UrlComponent implements OnInit {
     return this.form.get('url') as FormControl<string>;
   }
 
-  constructor(private urlService: UrlService) {}
+  constructor(private urlService: UrlService, private spinner: NgxSpinnerService) {}
 
   ngOnInit(): void {}
 
   onShorten() {
+    this.spinner.show();
     this.urlService
       .createSlugByUrl(this.url.value)
-      .then((model) => (this.model = model))
+      .then((model) => {
+        this.model = model
+        this.spinner.hide();
+      })
       .catch((err) => {
         this.model = null;
+        this.spinner.hide();
       });
     this.form.reset();
   }
