@@ -1,9 +1,12 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
+import { MongooseModule } from '@nestjs/mongoose';
+import { mongoConnectionString } from 'configs/config';
+import { UrlModule } from './url/url.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [],
+  imports: [
+    MongooseModule.forRoot(mongoConnectionString, { dbName: 'shortener' }),
+    UrlModule,
+  ],
 })
 export class AppModule {}
