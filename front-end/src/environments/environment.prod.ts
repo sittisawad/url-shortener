@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  backendUrl: "http://localhost:3000/"
+  backendUrl: "https://url-shortener-kbm8ar8yk-sittisawad.vercel.app/"
 };
