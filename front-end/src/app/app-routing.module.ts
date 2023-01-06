@@ -1,15 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { RedirectComponent } from './redirect/redirect.component';
 import { UrlComponent } from './url/url.component';
 import { UrlResolver } from './url/url.resolver';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: UrlComponent,
-    pathMatch: 'full',
-  },
+
   {
     path: 'not-found',
     component: NotFoundComponent,
@@ -18,7 +15,11 @@ const routes: Routes = [
   {
     path: ':slug',
     resolve: { slug: UrlResolver },
-    component: NotFoundComponent,
+    component: RedirectComponent,
+  },
+  {
+    path: '',
+    component: UrlComponent,
     pathMatch: 'full',
   },
 ];
