@@ -40,6 +40,7 @@ export class UrlComponent implements OnInit {
   }
 
   onCopyUrl() {
+    navigator.clipboard.writeText(this.currentUrl + this.model?.slug)
     const el = document.getElementById('copyToast');
     const toast = new Toast(el!);
     toast.show();

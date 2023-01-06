@@ -22,7 +22,7 @@
                 type="text"
                 class="form-control"
                 [ngClass]="{ 'is-invalid': form.touched && form.invalid }"
-                placeholder="Enter the link here"
+                placeholder="Enter the url here"
               />
               <button
                 [disabled]="form.invalid"
@@ -34,10 +34,10 @@
               </button>
               <div class="invalid-feedback">
                 <ng-container *ngIf="url.errors?.['required']"
-                  >Please enter link</ng-container
+                  >Please enter a URL.</ng-container
                 >
                 <ng-container *ngIf="url.errors?.['url']"
-                  >Please enter valid</ng-container
+                  >You have entered an invalid URL format. Please specify a valid URL.</ng-container
                 >
               </div>
             </div>
