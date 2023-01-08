@@ -38,7 +38,7 @@ export class UrlComponent implements OnInit {
       .catch((err) => {
         this.model = null;
       });
-    this.form.reset();
+    //this.form.reset();
   }
 
   onCopyUrl() {
